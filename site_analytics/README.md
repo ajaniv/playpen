@@ -27,10 +27,10 @@ Implementation aspects focused include:
 
 ## Physical Architecture
 Note: missing load balancers, processes running on each node,  process interaction, database replication,  WAN replication for  global data distribution
-[See diagram in!] (docs/PhysicalArchitecture.jpg).
+[Review high level physical architecture diagram] (docs/PhysicalArchitecture.jpg).
 
 ## Simplified  Analytics Data Work Flow
-See diagram in docs/DataWorkflow.jpg
+[Review data workflow diagram] (docs/DataWorkflow.jpg)
 * N number of agents produce concurrent PageVisit event data
 * N number of collector process instances:
     - Create new Page object instances for newly used pages
@@ -38,7 +38,7 @@ See diagram in docs/DataWorkflow.jpg
     - Generate  PageStatistics  instances  snapshots  with per domain and page change data
     
 ## High Level Business Object Model
-See diagram in docs/BusinessObjectModel.jpg
+[Review business object model diagram]  (docs/BusinessObjectModel.jpg)
 * All business classes inherit from  the abstract base class AppBaseModel which captures creation time, creation user, and objet id
 * Domain: Top level abstraction for organizing pages
 * Page: captures total page hits for a page associated with a domain, subject, path
