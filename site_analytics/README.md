@@ -33,9 +33,9 @@ See diagram in docs/PhysicalArchitecture.jpg.
 See diagram in docs/DataWorkflow.jpg
 * N number of agents produce concurrent PageVisit event data
 * N number of collector process instances:
-    -Create new Page object instances for newly used pages
-    -Update Page  visit totals per domain and page
-    -Generate  PageStatistics  instances  snapshots  with per domain and page change data
+    - Create new Page object instances for newly used pages
+    - Update Page  visit totals per domain and page
+    - Generate  PageStatistics  instances  snapshots  with per domain and page change data
     
 ## High Level Business Object Model
 See diagram in docs/BusinessObjectModel.jpg
