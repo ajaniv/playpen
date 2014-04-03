@@ -1,0 +1,40 @@
+[
+{
+    "pk": 1, 
+    "model": "analytics_api.pagestatistics", 
+    "fields": {
+        "creation_user": [
+            "admin"
+        ], 
+        "statistics": [
+            {
+                "path": "http://gismodo.com/page/1", 
+                "subject": "First Subject", 
+                "visitors": 400
+            }
+        ], 
+        "creation_time": "2014-03-24T19:04:52.505Z", 
+        "domain": "gizmodo.com", 
+        "snapshot_time": "2014-03-24T15:02:23Z"
+    }
+},
+{
+    "pk": 2, 
+    "model": "analytics_api.pagestatistics", 
+    "fields": {
+        "creation_user": [
+            "admin"
+        ], 
+        "statistics": [
+            {
+                "path": "http://gismodo.com/page/1", 
+                "subject": "First Subject", 
+                "visitors": 600
+            }
+        ], 
+        "creation_time": "2014-03-24T19:06:00.980Z", 
+        "domain": "gizmodo.com", 
+        "snapshot_time": "2014-03-24T15:05:45Z"
+    }
+}
+]

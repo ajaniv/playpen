@@ -1,0 +1,35 @@
+[
+{
+    "pk": 1, 
+    "model": "analytics_api.domain", 
+    "fields": {
+        "creation_user": [
+            "admin"
+        ], 
+        "creation_time": "2014-03-22T18:13:44.927Z", 
+        "name": "gizmodo.com"
+    }
+},
+{
+    "pk": 2, 
+    "model": "analytics_api.domain", 
+    "fields": {
+        "creation_user": [
+            "admin"
+        ], 
+        "creation_time": "2014-03-22T18:14:33.663Z", 
+        "name": "avc.com"
+    }
+},
+{
+    "pk": 3, 
+    "model": "analytics_api.domain", 
+    "fields": {
+        "creation_user": [
+            "admin"
+        ], 
+        "creation_time": "2014-03-22T18:15:03.215Z", 
+        "name": "someecards.com"
+    }
+}
+]

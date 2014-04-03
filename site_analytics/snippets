@@ -1,0 +1,49 @@
+
+> curl -H 'Accept: application/json; indent=4'  'http://127.0.0.1:8000/api/' -uadmin:admin
+{
+    "domains": "http://127.0.0.1:8000/api/domains/", 
+    "pagediffs": "http://127.0.0.1:8000/api/pagediffs/", 
+    "users": "http://127.0.0.1:8000/api/users/", 
+    "visits": "http://127.0.0.1:8000/api/visits/"
+}
+
+
+> curl -H 'Accept: application/json; indent=4'  'http://127.0.0.1:8000/api/domains/?apikey=99b792d59799b05a35ce4ff8bd41f35c72992a32'
+{
+    "count": 3, 
+    "next": null, 
+    "previous": null, 
+    "results": [
+        {
+            "id": 1, 
+            "creation_time": "2014-03-22T18:13:44.927Z", 
+            "name": "gizmodo.com"
+        }, 
+        {
+            "id": 2, 
+            "creation_time": "2014-03-22T18:14:33.663Z", 
+            "name": "avc.com"
+        }, 
+        {
+            "id": 3, 
+            "creation_time": "2014-03-22T18:15:03.215Z", 
+            "name": "someecards.com"
+        }
+    ]
+}
+
+
+> curl -H 'Accept: application/json; indent=4'  'http://127.0.0.1:8000/api/pagediffs/?apikey=99b792d59799b05a35ce4ff8bd41f35c72992a32&domain=gizmodo.com'
+{
+    "count": 1, 
+    "next": null, 
+    "previous": null, 
+    "results": [
+        {
+            "path": "http://gismodo.com/page/1", 
+            "subject": "First Subject", 
+            "change": 200
+        }
+    ]
+}
+
