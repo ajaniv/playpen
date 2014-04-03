@@ -11,25 +11,25 @@ Implementation aspects focused include:
 * Error handling
 *  Unit testing
 
-#Architecture Overview
-##Key Messages
-*Scale horizontally and vertically with page visit POST event  nodes (Apache, Django)
-*Page visit event  stored in distributed cache which may not require persistent store (i.e. memcached,  redis).  Data is validated balancing speed vs data quality requirements
+
+## Key Messages
+* Scale horizontally and vertically with page visit POST event  nodes (Apache, Django)
+* Page visit event  stored in distributed cache which may not require persistent store (i.e. memcached,  redis).  Data is validated balancing speed vs data quality requirements
 *Multiple nodes host collector processes which are triggered by timed messages (i.e. celery)  collect the data,  perform second level validation, generate exception reports, store the  statistics in persistent backed distributed cache
-*Agent requests for top pages, page hit delta  fetch  the  data from the distributed cache 
-*Ability to handle raw page visit data processing  in real time is questionable, requiring a level of event data  consolidation.   
+* Agent requests for top pages, page hit delta  fetch  the  data from the distributed cache 
+* Ability to handle raw page visit data processing  in real time is questionable, requiring a level of event data  consolidation.   
 
-##Discussion points
-*The PageVisit event data may be discarded  unless there are requirements for historical data analysis at the granularity of the event
-*Page statistics capture frequency needs to be balanced with data analysis requirements.  Are there any requirements to view the data at 1 second intervals?  60 seconds?  Feels more likely that a number of 5 seconds which create a technical scalability challenge
-*Page view activity change requests should allow a from, to period  parameters, and not only be limited to the last two snapshots
-*Authentication token used within get params and not within HTTP header.
+## Discussion points
+* The PageVisit event data may be discarded  unless there are requirements for historical data analysis at the granularity of the event
+* Page statistics capture frequency needs to be balanced with data analysis requirements.  Are there any requirements to view the data at 1 second intervals?  60 seconds?  Feels more likely that a number of 5 seconds which create a technical scalability challenge
+* Page view activity change requests should allow a from, to period  parameters, and not only be limited to the last two snapshots
+* Authentication token used within get params and not within HTTP header.
 
-##Physical Architecture
+## Physical Architecture
 Note: missing load balancers, processes running on each node,  process interaction, database replication,  WAN replication for  global data distribution
 See diagram in docs/PhysicalArchitecture.jpg.
 
-##Simplified  Analytics Data Work Flow
+## Simplified  Analytics Data Work Flow
 See diagram in docs/DataWorkflow.jpg
 * N number of agents produce concurrent PageVisit event data
 * N number of collector process instances:
@@ -37,22 +37,22 @@ See diagram in docs/DataWorkflow.jpg
     -Update Page  visit totals per domain and page
     -Generate  PageStatistics  instances  snapshots  with per domain and page change data
     
-##High Level Business Object Model
+## High Level Business Object Model
 See diagram in docs/BusinessObjectModel.jpg
-*All business classes inherit from  the abstract base class AppBaseModel which captures creation time, creation user, and objet id
-*Domain: Top level abstraction for organizing pages
-*Page: captures total page hits for a page associated with a domain, subject, path
-*PageVisit: raw event data captured from  agent including ip address,  path, user agent, domain,  subject, apikey.  Has no foreign keys for simple validation and rapid capture
-*PageStatistics:  time based snapshot of  PageVisit activity per domain.  Captures page events from t to t+1
+* All business classes inherit from  the abstract base class AppBaseModel which captures creation time, creation user, and objet id
+* Domain: Top level abstraction for organizing pages
+* Page: captures total page hits for a page associated with a domain, subject, path
+* PageVisit: raw event data captured from  agent including ip address,  path, user agent, domain,  subject, apikey.  Has no foreign keys for simple validation and rapid capture
+* PageStatistics:  time based snapshot of  PageVisit activity per domain.  Captures page events from t to t+1
 
 
-##Implementation notes
-*Focused on building the minimal scaffold for finding the page activity differences
-*Unit test proves that handling of page activity changes for a domain between two time periods or last two time periods works
-*Unit test uses factories to create page statistics data for consumption by web services
+## Implementation notes
+* Focused on building the minimal scaffold for finding the page activity differences
+* Unit test proves that handling of page activity changes for a domain between two time periods or last two time periods works
+* Unit test uses factories to create page statistics data for consumption by web services
 
 
-#Installation
+## Installation
 
 Software was developed on a MacBook Pro under Python 2.7.6, using Django, Django Rest Framework, sqlite, and virtualenv
 Steps to install locally, using bash:
@@ -68,7 +68,7 @@ Steps to install locally, using bash:
     > scripts/loaddata.sh
 ```
 
-#Runing unit testing
+## Runing unit testing
 ```
     >./manage.py test
         Creating test database for alias 'default'...
@@ -86,8 +86,8 @@ Steps to install locally, using bash:
         OK
 ```
         
-#Running integration tests
-•   start server
+## Running integration tests
+*   start server
 ```
     > ./manage.py runserver
         Validating models...
@@ -98,7 +98,7 @@ Steps to install locally, using bash:
         Starting development server at http://127.0.0.1:8000/
         Quit the server with CONTROL-C.
 ```
-•   Show end points
+* Show end points
 ```
 > curl -H 'Accept: application/json; indent=4'  'http://127.0.0.1:8000/api/' -uadmin:admin
 
@@ -109,7 +109,7 @@ Steps to install locally, using bash:
     "visits": "http://127.0.0.1:8000/api/visits/"
 }
 ```
-•   Show domains:
+* Show domains
 ```
 > curl -H 'Accept: application/json; indent=4'  'http://127.0.0.1:8000/api/domains/?apikey=99b792d59799b05a35ce4ff8bd41f35c72992a32'
 
@@ -136,7 +136,7 @@ Steps to install locally, using bash:
     ]
 }
 ```
-•   Show pagediffs
+* Show pagediffs
 ```
 > curl -H 'Accept: application/json; indent=4'  'http://127.0.0.1:8000/api/pagediffs/?apikey=99b792d59799b05a35ce4ff8bd41f35c72992a32&domain=gizmodo.com'
 
@@ -154,15 +154,15 @@ Steps to install locally, using bash:
 }
 ```
    
-#Code and Design Review
+## Code and Design Review
 
 Key modules and classes, in suggested priority order:
-1.  analytics_api.api.tests.PageDiffTestCase
-2.  analytics__api.views. PageDiffView   
-3.  analytics__api.models. PageStatistics
+- analytics_api.api.tests.PageDiffTestCase
+- analytics__api.views. PageDiffView   
+- analytics__api.models. PageStatistics
 
 
-#Key Findings
+## Key Findings
 - Further analysis required on validation of request.  Not yet clear how it stacks vs typical Django form validation
 - Further analysis required for efficient attribute level serialization override.
 - Ability to quickly test the API using forms similar to the Django admin facilities
