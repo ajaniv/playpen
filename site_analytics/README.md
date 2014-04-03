@@ -27,7 +27,7 @@ Implementation aspects focused include:
 
 ## Physical Architecture
 Note: missing load balancers, processes running on each node,  process interaction, database replication,  WAN replication for  global data distribution
-See diagram in docs/PhysicalArchitecture.jpg.
+[See diagram in!] (docs/PhysicalArchitecture.jpg).
 
 ## Simplified  Analytics Data Work Flow
 See diagram in docs/DataWorkflow.jpg
@@ -157,9 +157,9 @@ Steps to install locally, using bash:
 ## Code and Design Review
 
 Key modules and classes, in suggested priority order:
-- analytics_api.api.tests.PageDiffTestCase
-- analytics__api.views. PageDiffView   
-- analytics__api.models. PageStatistics
+1. analytics_api.api.tests.PageDiffTestCase
+2.  analytics__api.views. PageDiffView   
+3.  analytics__api.models. PageStatistics
 
 
 ## Key Findings
