@@ -1,0 +1,9 @@
+This was executed on a MacBook Pro 2.9 GHz Intel Core i7, 8GB 1600 MHZ RAM
+using Python 2.76 and Eclipse PyDev plugin, with no dependencies on any third party package
+
+Python modules for review corresponding to each of the problems:
+1) comb.py
+2) prime_sum.py
+3) acquaintances.py
+
+Each module can handle one or more data sets, and minimal validation is performed on the test data
